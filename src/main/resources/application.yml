@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /api
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
