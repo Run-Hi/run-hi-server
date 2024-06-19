@@ -12,8 +12,9 @@ class CorsConfig : WebMvcConfigurer {
         corsRegistry.addMapping("/**")
             .allowedMethods("*")
             .allowedOrigins(
-                "http://localhost:8888/",
                 "https://runhi.org/",
+                "http://localhost:8888/",
+                "http://localhost:3000",
             )
             .allowCredentials(true)
             .exposedHeaders(LOCATION, SET_COOKIE)
