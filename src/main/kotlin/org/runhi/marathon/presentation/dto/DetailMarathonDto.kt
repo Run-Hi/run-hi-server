@@ -10,6 +10,8 @@ data class DetailMarathonDto(
     val imageUrl: String,
     val isAccepting: Boolean,
     val conductDate: LocalDate,
+    val startDate: LocalDate,
+    val endDate: LocalDate,
     val totalReview: Float,
     val reviewCount: Int,
     val id: Long,
@@ -34,6 +36,8 @@ data class DetailMarathonDto(
             (LocalDate.now() > marathon.startAcceptingDate) &&
                 (LocalDate.now() < marathon.endAcceptingDate),
             marathon.conductDate,
+            marathon.startAcceptingDate,
+            marathon.endAcceptingDate,
             averageStar.total,
             averageStar.count,
             marathon.id!!,
