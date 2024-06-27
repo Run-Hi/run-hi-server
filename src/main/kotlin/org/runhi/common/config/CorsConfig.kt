@@ -1,13 +1,17 @@
 package org.runhi.common.config
 
+import org.runhi.auth.interceptor.AuthInterceptor
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpHeaders.LOCATION
 import org.springframework.http.HttpHeaders.SET_COOKIE
 import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-class CorsConfig : WebMvcConfigurer {
+class CorsConfig(
+    private val authInterceptor: AuthInterceptor,
+) : WebMvcConfigurer {
     override fun addCorsMappings(corsRegistry: CorsRegistry) {
         corsRegistry.addMapping("/**")
             .allowedMethods("*")
@@ -18,5 +22,9 @@ class CorsConfig : WebMvcConfigurer {
             )
             .allowCredentials(true)
             .exposedHeaders(LOCATION, SET_COOKIE)
+    }
+
+    override fun addInterceptors(registry: InterceptorRegistry) {
+        registry.addInterceptor(authInterceptor)
     }
 }

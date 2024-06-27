@@ -1,5 +1,7 @@
 package org.runhi.review.controller
 
+import org.runhi.auth.annotation.LoginRequired
+import org.runhi.auth.repository.AuthRepository
 import org.runhi.review.controller.dto.ReviewRequestDto
 import org.runhi.review.controller.dto.ReviewResponseDto
 import org.runhi.review.domain.Review
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/reviews")
 class ReviewController(
     private val reviewService: ReviewService,
+    private val authRepository: AuthRepository,
 ) {
     @GetMapping("/{id}")
     fun getReviewByMarathonId(
@@ -25,9 +28,10 @@ class ReviewController(
     }
 
     @PostMapping
+    @LoginRequired
     fun createReview(
         @RequestBody request: ReviewRequestDto,
     ) {
-        reviewService.create(request)
+        reviewService.create(request, authRepository.getCurrentUser())
     }
 }

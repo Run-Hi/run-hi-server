@@ -40,6 +40,21 @@ dependencies {
 
     // p6spy
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
+
+    // openFeign
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.1.2")
+
+    // jwt
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+}
+
+// openFeign
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2023.0.2")
+    }
 }
 
 // queryDSL 설정
