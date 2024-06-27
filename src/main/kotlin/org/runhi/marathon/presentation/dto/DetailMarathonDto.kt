@@ -22,7 +22,6 @@ data class DetailMarathonDto(
     val waterStation: Float,
     val souvenir: Float,
     val medal: Float,
-    val fee: Int,
     val applyUrl: String,
 ) {
     constructor(
@@ -48,7 +47,6 @@ data class DetailMarathonDto(
             averageStar.waterStation,
             averageStar.souvenir,
             averageStar.medal,
-            marathon.fee,
             marathon.applyUrl,
         )
 }
